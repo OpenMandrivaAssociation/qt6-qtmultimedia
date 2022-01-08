@@ -78,24 +78,23 @@ Development files for the Qt %{major} ${lib} library
 %optional %{_qtdir}/modules/${lib}Private.json
 %optional %{_libdir}/cmake/Qt%{major}${lib}
 %optional %{_libdir}/cmake/Qt%{major}${lib}Private
-%optional %{_qtdir}/lib/cmake/Qt%{major}${lib}
+%optional %{_libdir}/cmake/Qt%{major}BuildInternals/StandaloneTests/Qt${lib}TestsConfig.cmake
+%optional %{_libdir}/cmake/Qt%{major}Qml/QmlPlugins/Qt%{major}$(echo ${lib}|tr A-Z a-z){AdditionalTargetInfo,Config,ConfigVersion,Targets,Targets-relwithdebinfo}*.cmake
+%optional %{_libdir}/cmake/Qt%{major}${lib}QuickPrivate
+%optional %{_libdir}/cmake/Qt%{major}Qml/QmlPlugins/Qt%{major}quick$(echo ${lib}|tr A-Z a-z){AdditionalTargetInfo,Config,ConfigVersion,Targets,Targets-relwithdebinfo}*.cmake
 %optional %{_qtdir}/lib/metatypes/qt%{major}$(echo ${lib}|tr A-Z a-z)_relwithdebinfo_metatypes.json
 %optional %{_qtdir}/lib/metatypes/qt%{major}$(echo ${lib}|tr A-Z a-z)private_relwithdebinfo_metatypes.json
 %optional %{_qtdir}/mkspecs/modules/qt_lib_$(echo ${lib}|tr A-Z a-z).pri
 %optional %{_qtdir}/mkspecs/modules/qt_lib_$(echo ${lib}|tr A-Z a-z)_private.pri
-%optional %{_qtdir}/lib/cmake/Qt%{major}BuildInternals/StandaloneTests/Qt${lib}TestsConfig.cmake
-%optional %{_qtdir}/lib/cmake/Qt%{major}Qml/QmlPlugins/Qt%{major}$(echo ${lib}|tr A-Z a-z){AdditionalTargetInfo,Config,ConfigVersion,Targets,Targets-relwithdebinfo}*.cmake
-%optional %{_qtdir}/lib/cmake/Qt%{major}${lib}QuickPrivate
-%optional %{_qtdir}/lib/cmake/Qt%{major}Qml/QmlPlugins/Qt%{major}quick$(echo ${lib}|tr A-Z a-z){AdditionalTargetInfo,Config,ConfigVersion,Targets,Targets-relwithdebinfo}*.cmake
 EOF
 if [ "${lib}" = "Multimedia" ]; then
 	cat <<EOF
-%{_qtdir}/lib/cmake/Qt6/FindAVFoundation.cmake
-%{_qtdir}/lib/cmake/Qt6/FindGObject.cmake
-%{_qtdir}/lib/cmake/Qt6/FindGStreamer.cmake
-%{_qtdir}/lib/cmake/Qt6/FindMMRenderer.cmake
-%{_qtdir}/lib/cmake/Qt6/FindWMF.cmake
-%{_qtdir}/lib/cmake/Qt6/FindWrapPulseAudio.cmake
+%{_libdir}/cmake/Qt6/FindAVFoundation.cmake
+%{_libdir}/cmake/Qt6/FindGObject.cmake
+%{_libdir}/cmake/Qt6/FindGStreamer.cmake
+%{_libdir}/cmake/Qt6/FindMMRenderer.cmake
+%{_libdir}/cmake/Qt6/FindWMF.cmake
+%{_libdir}/cmake/Qt6/FindWrapPulseAudio.cmake
 EOF
 fi
 done)}
@@ -133,7 +132,4 @@ mkdir -p %{buildroot}%{_bindir} %{buildroot}%{_libdir}/cmake
 for i in %{buildroot}%{_qtdir}/lib/*.so*; do
         ln -s qt%{major}/lib/$(basename ${i}) %{buildroot}%{_libdir}/
 done
-for i in %{buildroot}%{_qtdir}/lib/cmake/*; do
-        [ "$(basename ${i})" = "Qt6BuildInternals" -o "$(basename ${i})" = "Qt6Qml" -o "$(basename ${i})" = "Qt6" ] && continue
-        ln -s ../qt%{major}/lib/cmake/$(basename ${i}) %{buildroot}%{_libdir}/cmake/
-done
+mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}
