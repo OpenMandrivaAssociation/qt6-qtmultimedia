@@ -30,6 +30,7 @@ BuildRequires:	%{_lib}Qt%{major}DBus-devel
 BuildRequires:	qt%{major}-cmake
 BuildRequires:	qt%{major}-qtdeclarative
 BuildRequires:	qt%{major}-qtdeclarative-devel
+BuildRequires:	qt%{major}-qtshadertools
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
