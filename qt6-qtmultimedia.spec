@@ -1,11 +1,5 @@
-#define beta rc
-#define snapshot 20200627
-%define major 6
-
-%define _qtdir %{_libdir}/qt%{major}
-
 Name:		qt6-qtmultimedia
-Version:	6.2.3
+Version:	6.3.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -14,23 +8,22 @@ Source:		qtmultimedia-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
 Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtmultimedia-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
 %endif
 Group:		System/Libraries
-Summary:	Qt %{major} multimedia module
+Summary:	Qt %{qtmajor} multimedia module
 BuildRequires:	cmake
 BuildRequires:	ninja
-BuildRequires:	%{_lib}Qt%{major}Core-devel
-BuildRequires:	%{_lib}Qt%{major}Gui-devel
-BuildRequires:	%{_lib}Qt%{major}Network-devel
-BuildRequires:	%{_lib}Qt%{major}Xml-devel
-BuildRequires:	%{_lib}Qt%{major}Widgets-devel
-BuildRequires:	%{_lib}Qt%{major}Sql-devel
-BuildRequires:	%{_lib}Qt%{major}PrintSupport-devel
-BuildRequires:	%{_lib}Qt%{major}OpenGL-devel
-BuildRequires:	%{_lib}Qt%{major}OpenGLWidgets-devel
-BuildRequires:	%{_lib}Qt%{major}DBus-devel
-BuildRequires:	qt%{major}-cmake
-BuildRequires:	qt%{major}-qtdeclarative
-BuildRequires:	qt%{major}-qtdeclarative-devel
-BuildRequires:	qt%{major}-qtshadertools
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Network)
+BuildRequires:	cmake(Qt6Xml)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6Sql)
+BuildRequires:	cmake(Qt6PrintSupport)
+BuildRequires:	cmake(Qt6OpenGL)
+BuildRequires:	cmake(Qt6OpenGLWidgets)
+BuildRequires:	cmake(Qt6DBus)
+BuildRequires:	cmake(Qt6Qml)
+BuildRequires:	cmake(Qt6ShaderTools)
+BuildRequires:	qt6-cmake
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
@@ -42,62 +35,18 @@ BuildRequires:	%{_lib}gpuruntime
 License:	LGPLv3/GPLv3/GPLv2
 
 %description
-Qt %{major} multimedia module
+Qt %{qtmajor} multimedia module
 
-%define libs Multimedia MultimediaQuick MultimediaWidgets 
-%{expand:%(for lib in %{libs}; do
-	cat <<EOF
-%%global lib${lib} %%mklibname Qt%{major}${lib} %{major}
-%%global dev${lib} %%mklibname -d Qt%{major}${lib}
-%%package -n %%{lib${lib}}
-Summary: Qt %{major} ${lib} library
-Group: System/Libraries
+%define extra_devel_files_Multimedia \
+%{_qtdir}/lib/cmake/Qt6/FindAVFoundation.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindGObject.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindGStreamer.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindMMRenderer.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindWMF.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindWrapPulseAudio.cmake \
+%{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtMultimediaTestsConfig.cmake
 
-%%description -n %%{lib${lib}}
-Qt %{major} ${lib} library
-
-%%files -n %%{lib${lib}}
-%{_qtdir}/lib/libQt%{major}${lib}.so.*
-%{_libdir}/libQt%{major}${lib}.so.*
-%optional %{_qtdir}/qml/Qt${lib}
-
-%%package -n %%{dev${lib}}
-Summary: Development files for the Qt %{major} ${lib} library
-Requires: %%{lib${lib}} = %{EVRD}
-Group: Development/KDE and Qt
-
-%%description -n %%{dev${lib}}
-Development files for the Qt %{major} ${lib} library
-
-%%files -n %%{dev${lib}}
-%{_qtdir}/lib/libQt%{major}${lib}.so
-%{_libdir}/libQt%{major}${lib}.so
-%{_qtdir}/lib/libQt%{major}${lib}.prl
-%{_qtdir}/include/Qt${lib}
-%optional %{_qtdir}/modules/${lib}.json
-%optional %{_qtdir}/modules/${lib}Private.json
-%optional %{_libdir}/cmake/Qt%{major}${lib}
-%optional %{_libdir}/cmake/Qt%{major}${lib}Private
-%optional %{_libdir}/cmake/Qt%{major}BuildInternals/StandaloneTests/Qt${lib}TestsConfig.cmake
-%optional %{_libdir}/cmake/Qt%{major}Qml/QmlPlugins/Qt%{major}$(echo ${lib}|tr A-Z a-z){AdditionalTargetInfo,Config,ConfigVersion,Targets,Targets-relwithdebinfo}*.cmake
-%optional %{_libdir}/cmake/Qt%{major}${lib}QuickPrivate
-%optional %{_libdir}/cmake/Qt%{major}Qml/QmlPlugins/Qt%{major}quick$(echo ${lib}|tr A-Z a-z){AdditionalTargetInfo,Config,ConfigVersion,Targets,Targets-relwithdebinfo}*.cmake
-%optional %{_qtdir}/lib/metatypes/qt%{major}$(echo ${lib}|tr A-Z a-z)_relwithdebinfo_metatypes.json
-%optional %{_qtdir}/lib/metatypes/qt%{major}$(echo ${lib}|tr A-Z a-z)private_relwithdebinfo_metatypes.json
-%optional %{_qtdir}/mkspecs/modules/qt_lib_$(echo ${lib}|tr A-Z a-z).pri
-%optional %{_qtdir}/mkspecs/modules/qt_lib_$(echo ${lib}|tr A-Z a-z)_private.pri
-EOF
-if [ "${lib}" = "Multimedia" ]; then
-	cat <<EOF
-%{_libdir}/cmake/Qt6/FindAVFoundation.cmake
-%{_libdir}/cmake/Qt6/FindGObject.cmake
-%{_libdir}/cmake/Qt6/FindGStreamer.cmake
-%{_libdir}/cmake/Qt6/FindMMRenderer.cmake
-%{_libdir}/cmake/Qt6/FindWMF.cmake
-%{_libdir}/cmake/Qt6/FindWrapPulseAudio.cmake
-EOF
-fi
-done)}
+%qt6libs Multimedia MultimediaWidgets 
 
 %package examples
 Summary:	Example code demonstrating the use of %{name}
@@ -112,8 +61,6 @@ Example code demonstrating the use of %{name}
 
 %prep
 %autosetup -p1 -n qtmultimedia%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
-# FIXME why are OpenGL lib paths autodetected incorrectly, preferring
-# /usr/lib over /usr/lib64 even on 64-bit boxes?
 %cmake -G Ninja \
 	-DCMAKE_INSTALL_PREFIX=%{_qtdir} \
 	-DQT_BUILD_EXAMPLES:BOOL=ON \
@@ -125,11 +72,3 @@ export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
 
 %install
 %ninja_install -C build
-# Put stuff where tools will find it
-# We can't do the same for %{_includedir} right now because that would
-# clash with qt5 (both would want to have /usr/include/QtCore and friends)
-mkdir -p %{buildroot}%{_bindir} %{buildroot}%{_libdir}/cmake
-for i in %{buildroot}%{_qtdir}/lib/*.so*; do
-        ln -s qt%{major}/lib/$(basename ${i}) %{buildroot}%{_libdir}/
-done
-mv %{buildroot}%{_qtdir}/lib/cmake %{buildroot}%{_libdir}
