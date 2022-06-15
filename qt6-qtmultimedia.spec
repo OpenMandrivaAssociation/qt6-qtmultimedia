@@ -1,5 +1,5 @@
 Name:		qt6-qtmultimedia
-Version:	6.3.0
+Version:	6.3.1
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -43,8 +43,7 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6/FindGStreamer.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindMMRenderer.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindWMF.cmake \
-%{_qtdir}/lib/cmake/Qt6/FindWrapPulseAudio.cmake \
-%{_qtdir}/lib/cmake/Qt6BuildInternals/StandaloneTests/QtMultimediaTestsConfig.cmake
+%{_qtdir}/lib/cmake/Qt6/FindWrapPulseAudio.cmake
 
 %qt6libs Multimedia MultimediaWidgets 
 
