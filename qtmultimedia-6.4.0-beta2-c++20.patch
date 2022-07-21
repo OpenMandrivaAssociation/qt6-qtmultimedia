@@ -1,0 +1,19 @@
+diff -up qtmultimedia-everywhere-src-6.4.0-beta2/src/3rdparty/resonance-audio/resonance_audio/base/aligned_allocator.h.omv~ qtmultimedia-everywhere-src-6.4.0-beta2/src/3rdparty/resonance-audio/resonance_audio/base/aligned_allocator.h
+--- qtmultimedia-everywhere-src-6.4.0-beta2/src/3rdparty/resonance-audio/resonance_audio/base/aligned_allocator.h.omv~	2022-07-21 15:19:43.346221157 +0200
++++ qtmultimedia-everywhere-src-6.4.0-beta2/src/3rdparty/resonance-audio/resonance_audio/base/aligned_allocator.h	2022-07-21 15:35:13.630284533 +0200
+@@ -72,9 +72,15 @@ void AllignedFree(PointerType mem_block_
+ template <typename Type, size_t Alignment>
+ class AlignedAllocator : public std::allocator<Type> {
+  public:
++#if __cplusplus <= 201703L
+   typedef typename std::allocator<Type>::pointer Pointer;
+   typedef typename std::allocator<Type>::const_pointer ConstPointer;
+   typedef typename std::allocator<Type>::size_type SizeType;
++#else
++  typedef typename std::allocator_traits<std::allocator<Type>>::pointer Pointer;
++  typedef typename std::allocator_traits<std::allocator<Type>>::const_pointer ConstPointer;
++  typedef typename std::allocator_traits<std::allocator<Type>>::size_type SizeType;
++#endif
+ 
+   AlignedAllocator() { StaticAlignmentCheck<sizeof(Type), Alignment>(); }
+ 
