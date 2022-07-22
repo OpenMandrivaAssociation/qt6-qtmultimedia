@@ -21,6 +21,7 @@ BuildRequires:	cmake(Qt6Xml)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(Qt6Sql)
 BuildRequires:	cmake(Qt6Svg)
+BuildRequires:	cmake(Qt6Test)
 BuildRequires:	cmake(Qt6PrintSupport)
 BuildRequires:	cmake(Qt6OpenGL)
 BuildRequires:	cmake(Qt6OpenGLWidgets)
@@ -59,6 +60,7 @@ BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	pkgconfig(gstreamer-base-1.0)
 BuildRequires:	pkgconfig(gstreamer-audio-1.0)
 BuildRequires:	pkgconfig(gstreamer-video-1.0)
+BuildRequires:	pkgconfig(gstreamer-photography-1.0)
 BuildRequires:	pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:	cmake(LLVM)
 BuildRequires:	cmake(Clang)
@@ -122,7 +124,8 @@ Gstreamer based plugin for Qt multimedia playback
 	-DQT_BUILD_EXAMPLES:BOOL=ON \
 	-DQT_WILL_INSTALL:BOOL=ON \
 	-DFEATURE_spatialaudio_quick3d:BOOL=ON \
-	--log-level=STATUS
+	--log-level=STATUS \
+|| cat CMakeFiles/CMakeOutput.log
 
 %build
 export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
