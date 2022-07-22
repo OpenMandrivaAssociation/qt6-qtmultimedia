@@ -20,13 +20,29 @@ BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6Xml)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(Qt6Sql)
+BuildRequires:	cmake(Qt6Svg)
 BuildRequires:	cmake(Qt6PrintSupport)
 BuildRequires:	cmake(Qt6OpenGL)
 BuildRequires:	cmake(Qt6OpenGLWidgets)
 BuildRequires:	cmake(Qt6DBus)
 BuildRequires:	cmake(Qt6Qml)
 BuildRequires:	cmake(Qt6Quick)
+BuildRequires:	cmake(Qt6QuickControls2)
+BuildRequires:	cmake(Qt6QuickTest)
 BuildRequires:	cmake(Qt6Quick3D)
+BuildRequires:	cmake(Qt6Quick3DHelpers)
+BuildRequires:	cmake(Qt6Quick3DTools)
+BuildRequires:	cmake(Qt6Quick3DUtils)
+BuildRequires:	cmake(Qt6AssimpImporterPlugin)
+BuildRequires:	cmake(Qt6Quick3DAssetImport)
+BuildRequires:	cmake(Qt6Quick3DAssetUtils)
+BuildRequires:	cmake(Qt6BundledEmbree)
+BuildRequires:	cmake(Qt6Quick3DEffects)
+BuildRequires:	cmake(Qt6Quick3DGlslParserPrivate)
+BuildRequires:	cmake(Qt6Quick3DIblBaker)
+BuildRequires:	cmake(Qt6Quick3DParticleEffects)
+BuildRequires:	cmake(Qt6Quick3DParticles)
+BuildRequires:	cmake(Qt6Quick3DRuntimeRender)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	qt6-qtdeclarative
 BuildRequires:	qt6-qtquick3d
@@ -37,7 +53,12 @@ BuildRequires:	pkgconfig(vulkan)
 BuildRequires:	pkgconfig(libva)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-base-1.0)
+BuildRequires:	pkgconfig(gstreamer-audio-1.0)
+BuildRequires:	pkgconfig(gstreamer-video-1.0)
+BuildRequires:	pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:	cmake(LLVM)
 BuildRequires:	cmake(Clang)
 # Not really required, but referenced by LLVMExports.cmake
@@ -98,7 +119,8 @@ Gstreamer based plugin for Qt multimedia playback
 %cmake -G Ninja \
 	-DCMAKE_INSTALL_PREFIX=%{_qtdir} \
 	-DQT_BUILD_EXAMPLES:BOOL=ON \
-	-DQT_WILL_INSTALL:BOOL=ON
+	-DQT_WILL_INSTALL:BOOL=ON \
+	-DFEATURE_spatialaudio_quick3d:BOOL=ON
 
 %build
 export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
