@@ -26,6 +26,7 @@ BuildRequires:	cmake(Qt6OpenGL)
 BuildRequires:	cmake(Qt6OpenGLWidgets)
 BuildRequires:	cmake(Qt6DBus)
 BuildRequires:	cmake(Qt6Qml)
+BuildRequires:	cmake(Qt6QmlTools)
 BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6QuickControls2)
 BuildRequires:	cmake(Qt6QuickTest)
@@ -120,7 +121,8 @@ Gstreamer based plugin for Qt multimedia playback
 	-DCMAKE_INSTALL_PREFIX=%{_qtdir} \
 	-DQT_BUILD_EXAMPLES:BOOL=ON \
 	-DQT_WILL_INSTALL:BOOL=ON \
-	-DFEATURE_spatialaudio_quick3d:BOOL=ON
+	-DFEATURE_spatialaudio_quick3d:BOOL=ON \
+	--log-level=STATUS
 
 %build
 export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
