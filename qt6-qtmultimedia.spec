@@ -93,7 +93,13 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/*quickmultimedia*.cmake \
 %{_qtdir}/qml/QtMultimedia
 
-%qt6libs Multimedia MultimediaWidgets SpatialAudio MultimediaQuick
+%global extra_files_Quick3DSpatialAudio \
+%{_qtdir}/qml/QtQuick3D/SpatialAudio
+
+%global extra_devel_files_Quick3DSpatialAudio \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/*3dspatialaudio*
+
+%qt6libs Multimedia MultimediaWidgets SpatialAudio MultimediaQuick Quick3DSpatialAudio
 
 %package examples
 Summary:	Example code demonstrating the use of %{name}
