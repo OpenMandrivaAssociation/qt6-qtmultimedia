@@ -25,8 +25,11 @@ BuildRequires:	cmake(Qt6OpenGL)
 BuildRequires:	cmake(Qt6OpenGLWidgets)
 BuildRequires:	cmake(Qt6DBus)
 BuildRequires:	cmake(Qt6Qml)
+BuildRequires:	cmake(Qt6Quick)
+BuildRequires:	cmake(Qt6Quick3D)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	qt6-qtdeclarative
+BuildRequires:	qt6-qtquick3d
 BuildRequires:	qt6-cmake
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
@@ -57,9 +60,11 @@ Qt %{qtmajor} multimedia module
 
 %define extra_files_Multimedia \
 %dir %{_qtdir}/plugins/multimedia \
-%{_qtdir}/plugins/multimedia/libffmpegmediaplugin.so
+%{_qtdir}/plugins/multimedia/libffmpegmediaplugin.so \
+%{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/*quickmultimedia*.cmake \
+%{_qtdir}/qml/QtMultimedia
 
-%qt6libs Multimedia MultimediaWidgets SpatialAudio
+%qt6libs Multimedia MultimediaWidgets SpatialAudio MultimediaQuick
 
 %package examples
 Summary:	Example code demonstrating the use of %{name}
