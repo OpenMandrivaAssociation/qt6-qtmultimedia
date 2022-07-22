@@ -34,6 +34,10 @@ BuildRequires:	qt6-cmake
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
+BuildRequires:	pkgconfig(libva)
+BuildRequires:	pkgconfig(libpulse)
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	cmake(LLVM)
 BuildRequires:	cmake(Clang)
 # Not really required, but referenced by LLVMExports.cmake
