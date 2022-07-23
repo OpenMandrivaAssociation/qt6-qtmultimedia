@@ -15,6 +15,7 @@ Summary:	Qt %{qtmajor} multimedia module
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6Concurrent)
 BuildRequires:	cmake(Qt6Gui)
 BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6Xml)
@@ -27,6 +28,7 @@ BuildRequires:	cmake(Qt6OpenGL)
 BuildRequires:	cmake(Qt6OpenGLWidgets)
 BuildRequires:	cmake(Qt6DBus)
 BuildRequires:	cmake(Qt6Qml)
+BuildRequires:	cmake(Qt6QmlModels)
 BuildRequires:	cmake(Qt6QmlTools)
 BuildRequires:	cmake(Qt6Quick)
 BuildRequires:	cmake(Qt6QuickControls2)
