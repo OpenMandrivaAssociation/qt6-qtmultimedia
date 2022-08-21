@@ -1,0 +1,12 @@
+diff -up qtmultimedia-everywhere-src-6.4.0-beta3/src/plugins/multimedia/ffmpeg/qffmpeghwaccel.cpp.omv~ qtmultimedia-everywhere-src-6.4.0-beta3/src/plugins/multimedia/ffmpeg/qffmpeghwaccel.cpp
+--- qtmultimedia-everywhere-src-6.4.0-beta3/src/plugins/multimedia/ffmpeg/qffmpeghwaccel.cpp.omv~	2022-08-21 02:00:29.446407183 +0200
++++ qtmultimedia-everywhere-src-6.4.0-beta3/src/plugins/multimedia/ffmpeg/qffmpeghwaccel.cpp	2022-08-21 02:00:48.207496116 +0200
+@@ -99,7 +99,7 @@ static AVBufferRef *hardwareContextForCo
+ AVPixelFormat getFormat(AVCodecContext *s, const AVPixelFormat *fmt)
+ {
+     // First check HW accelerated codecs, the HW device context must be set
+-    if (s->hw_device_ctx && s->codec->hw_configs) {
++    if (s->hw_device_ctx) {
+         auto *device_ctx = (AVHWDeviceContext*)s->hw_device_ctx->data;
+         for (int i = 0; const AVCodecHWConfig *config = avcodec_get_hw_config(s->codec, i); i++) {
+             if (!(config->methods & AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX))
