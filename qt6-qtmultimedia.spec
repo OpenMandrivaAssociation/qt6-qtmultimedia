@@ -1,4 +1,4 @@
-%define beta beta3
+%define beta beta4
 
 Name:		qt6-qtmultimedia
 Version:	6.4.0
@@ -50,7 +50,6 @@ BuildRequires:	cmake(Qt6Quick3DParticles)
 BuildRequires:	cmake(Qt6Quick3DRuntimeRender)
 BuildRequires:	cmake(Qt6ShaderTools)
 BuildRequires:	qt6-qtdeclarative
-BuildRequires:	qt6-qtquick3d
 BuildRequires:	qt6-cmake
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
