@@ -9,7 +9,6 @@ Source:		qtmultimedia-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
 %else
 Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtmultimedia-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
 %endif
-Patch0:		qtmultimedia-ffmpeg-5.1.patch
 Group:		System/Libraries
 Summary:	Qt %{qtmajor} multimedia module
 BuildRequires:	cmake
