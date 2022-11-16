@@ -1,7 +1,7 @@
 #define beta rc
 
 Name:		qt6-qtmultimedia
-Version:	6.4.0
+Version:	6.4.1
 Release:	%{?beta:0.%{beta}.1}%{?snapshot:1.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -110,7 +110,7 @@ Example code demonstrating the use of %{name}
 
 %files examples
 %{_libdir}/qt6/examples/multimedia
-%{_libdir}/qt6/examples/multimediawidgets
+#{_libdir}/qt6/examples/multimediawidgets
 
 # No need to pull in dependency bloat, the ffmpeg plugin
 # should be better anyway...
