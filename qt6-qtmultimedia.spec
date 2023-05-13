@@ -2,7 +2,7 @@
 
 Name:		qt6-qtmultimedia
 Version:	6.5.0
-Release:	%{?beta:0.%{beta}.1}%{?snapshot:0.%{snapshot}.}2
+Release:	%{?beta:0.%{beta}.1}%{?snapshot:0.%{snapshot}.}3
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
 Source:		qtmultimedia-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
@@ -140,3 +140,4 @@ export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
 
 %install
 %ninja_install -C build
+%qt6_postinstall
