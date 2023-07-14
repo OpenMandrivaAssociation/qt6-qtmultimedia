@@ -1,14 +1,15 @@
-%define beta beta1
+%define beta beta2
 
 Name:		qt6-qtmultimedia
 Version:	6.6.0
-Release:	%{?beta:0.%{beta}.1}%{?snapshot:0.%{snapshot}.}1
+Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
 Source:		qtmultimedia-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
 %else
 Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtmultimedia-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
 %endif
+Patch0:		qtmultimedia-fix-examples.patch
 Group:		System/Libraries
 Summary:	Qt %{qtmajor} multimedia module
 BuildRequires:	cmake
