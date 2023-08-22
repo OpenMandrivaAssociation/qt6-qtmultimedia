@@ -1,6 +1,6 @@
-diff -up qtmultimedia-everywhere-src-6.6.0-beta2/examples/multimedia/screencapture/CMakeLists.txt.1~ qtmultimedia-everywhere-src-6.6.0-beta2/examples/multimedia/screencapture/CMakeLists.txt
---- qtmultimedia-everywhere-src-6.6.0-beta2/examples/multimedia/screencapture/CMakeLists.txt.1~	2023-07-07 23:01:06.000000000 +0200
-+++ qtmultimedia-everywhere-src-6.6.0-beta2/examples/multimedia/screencapture/CMakeLists.txt	2023-07-14 19:41:09.892949819 +0200
+diff -up qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt.1~ qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt
+--- qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt.1~	2023-08-16 22:35:08.000000000 +0200
++++ qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt	2023-08-22 21:26:07.544094461 +0200
 @@ -11,8 +11,8 @@ set(CMAKE_AUTORCC ON)
  set(CMAKE_CXX_STANDARD 17)
  set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -28,4 +28,4 @@ diff -up qtmultimedia-everywhere-src-6.6.0-beta2/examples/multimedia/screencaptu
 +    Qt6::MultimediaWidgets)
  
  set_target_properties(screencapture PROPERTIES
-     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
