@@ -1,7 +1,7 @@
 #define beta rc2
 
 Name:		qt6-qtmultimedia
-Version:	6.7.0
+Version:	6.7.1
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -112,6 +112,7 @@ Example code demonstrating the use of %{name}
 %files examples
 %{_libdir}/qt6/examples/multimedia
 #{_libdir}/qt6/examples/multimediawidgets
+%{_qtdir}/examples/spatialaudio/audiopanning/audiopanning
 
 # No need to pull in dependency bloat, the ffmpeg plugin
 # should be better anyway...
@@ -124,6 +125,23 @@ Gstreamer based plugin for Qt multimedia playback
 
 %files gstreamer
 %{_qtdir}/plugins/multimedia/libgstreamermediaplugin.so
+
+%package gstreamer-devel
+Summary:	Development files for the Qt Multimedia GStreamer plugin
+Group:		Development/KDE and Qt
+Requires:	%{name}-gstreamer = %{EVRD}
+
+%description gstreamer-devel
+Development files for the Qt Multimedia GStreamer plugin
+
+%files gstreamer-devel
+%{_qtdir}/modules/QGstreamerMediaPluginPrivate.json
+%{_qtdir}/mkspecs/modules/qt_lib_qgstreamermediaplugin_private.pri
+%{_qtdir}/metatypes/qt6qgstreamermediapluginprivate_*_metatypes.json
+%{_qtdir}/include/QtQGstreamerMediaPlugin
+%{_qtdir}/lib/cmake/Qt6QGstreamerMediaPluginPrivate
+%{_qtdir}/lib/libQt6QGstreamerMediaPlugin.a
+%{_qtdir}/lib/libQt6QGstreamerMediaPlugin.prl
 
 %prep
 %autosetup -p1 -n qtmultimedia%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
