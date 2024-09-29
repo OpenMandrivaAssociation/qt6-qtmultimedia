@@ -1,7 +1,7 @@
 #define beta rc2
 
 Name:		qt6-qtmultimedia
-Version:	6.7.2
+Version:	6.7.3
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -135,13 +135,13 @@ Requires:	%{name}-gstreamer = %{EVRD}
 Development files for the Qt Multimedia GStreamer plugin
 
 %files gstreamer-devel
-%{_qtdir}/modules/QGstreamerMediaPluginPrivate.json
-%{_qtdir}/mkspecs/modules/qt_lib_qgstreamermediaplugin_private.pri
-%{_qtdir}/metatypes/qt6qgstreamermediapluginprivate_*_metatypes.json
-%{_qtdir}/include/QtQGstreamerMediaPlugin
-%{_qtdir}/lib/cmake/Qt6QGstreamerMediaPluginPrivate
-%{_qtdir}/lib/libQt6QGstreamerMediaPlugin.a
-%{_qtdir}/lib/libQt6QGstreamerMediaPlugin.prl
+%{_qtdir}/include/QtQGstreamerMediaPluginImpl
+%{_qtdir}/lib/cmake/Qt6QGstreamerMediaPluginImplPrivate
+%{_qtdir}/lib/libQt6QGstreamerMediaPluginImpl.a
+%{_qtdir}/lib/libQt6QGstreamerMediaPluginImpl.prl
+%{_qtdir}/metatypes/qt6qgstreamermediapluginimplprivate_relwithdebinfo_metatypes.json
+%{_qtdir}/mkspecs/modules/qt_lib_qgstreamermediapluginimpl_private.pri
+%{_qtdir}/modules/QGstreamerMediaPluginImplPrivate.json
 
 %prep
 %autosetup -p1 -n qtmultimedia%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
