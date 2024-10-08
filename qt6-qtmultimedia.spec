@@ -1,7 +1,7 @@
 #define beta rc2
 
 Name:		qt6-qtmultimedia
-Version:	6.7.3
+Version:	6.8.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -79,6 +79,7 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6/FindGObject.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindGStreamer.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindMMRenderer.cmake \
+%{_qtdir}/lib/cmake/Qt6/FindPipeWire.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindWMF.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindWrapPulseAudio.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindFFmpeg.cmake \

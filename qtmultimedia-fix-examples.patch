@@ -1,9 +1,9 @@
-diff -up qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt.1~ qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt
---- qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt.1~	2023-08-16 22:35:08.000000000 +0200
-+++ qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencapture/CMakeLists.txt	2023-08-22 21:26:07.544094461 +0200
-@@ -11,8 +11,8 @@ set(CMAKE_AUTORCC ON)
- set(CMAKE_CXX_STANDARD 17)
- set(CMAKE_CXX_STANDARD_REQUIRED ON)
+diff -up qtmultimedia-everywhere-src-6.8.0/examples/multimedia/screencapture/CMakeLists.txt.1~ qtmultimedia-everywhere-src-6.8.0/examples/multimedia/screencapture/CMakeLists.txt
+--- qtmultimedia-everywhere-src-6.8.0/examples/multimedia/screencapture/CMakeLists.txt.1~	2024-10-02 18:31:01.000000000 +0200
++++ qtmultimedia-everywhere-src-6.8.0/examples/multimedia/screencapture/CMakeLists.txt	2024-10-08 22:39:58.282828274 +0200
+@@ -17,8 +17,8 @@ endif()
+ 
+ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/multimedia/screencapture")
  
 -find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 -find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS MultimediaWidgets Widgets)
@@ -12,7 +12,7 @@ diff -up qtmultimedia-everywhere-src-6.6.0-beta3/examples/multimedia/screencaptu
  
  set(PROJECT_SOURCES
          screencapture.pro
-@@ -31,11 +31,11 @@ qt_add_executable(screencapture
+@@ -37,11 +37,11 @@ qt_add_executable(screencapture
      )
  
  target_link_libraries(screencapture PRIVATE
