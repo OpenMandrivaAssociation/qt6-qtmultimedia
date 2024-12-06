@@ -1,7 +1,7 @@
 #define beta rc2
 
 Name:		qt6-qtmultimedia
-Version:	6.8.0
+Version:	6.8.1
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -87,7 +87,8 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6/FindVAAPI.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindWrapBundledResonanceAudioConfigExtra.cmake \
 %{_qtdir}/lib/cmake/Qt6BundledResonanceAudio \
-%{_qtdir}/lib/libQt6BundledResonanceAudio.a
+%{_qtdir}/lib/libQt6BundledResonanceAudio.a \
+%{_qtdir}/sbom/*
 
 %define extra_files_Multimedia \
 %dir %{_qtdir}/plugins/multimedia \
@@ -101,7 +102,11 @@ Qt %{qtmajor} multimedia module
 %global extra_devel_files_Quick3DSpatialAudio \
 %{_qtdir}/lib/cmake/Qt6Qml/QmlPlugins/*3dspatialaudio*
 
+%global extra_devel_files_MultimediaTestLib \
+%{_qtdir}/mkspecs/modules/qt_lib_multimediatestlibprivate_private.pri
+
 %qt6libs Multimedia MultimediaWidgets SpatialAudio MultimediaQuick Quick3DSpatialAudio
+%qt6staticlibs MultimediaTestLib
 
 %package examples
 Summary:	Example code demonstrating the use of %{name}
