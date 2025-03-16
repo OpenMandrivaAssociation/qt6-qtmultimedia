@@ -1,7 +1,7 @@
-#define beta rc2
+%define beta rc
 
 Name:		qt6-qtmultimedia
-Version:	6.8.2
+Version:	6.9.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -88,6 +88,13 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6/FindWrapBundledResonanceAudioConfigExtra.cmake \
 %{_qtdir}/lib/cmake/Qt6BundledResonanceAudio \
 %{_qtdir}/lib/libQt6BundledResonanceAudio.a \
+%{_qtdir}/include/QtFFmpegMediaPluginImpl \
+%{_qtdir}/lib/cmake/Qt6FFmpegMediaPluginImplPrivate \
+%{_qtdir}/lib/libQt6FFmpegMediaPluginImpl.a \
+%{_qtdir}/lib/libQt6FFmpegMediaPluginImpl.prl \
+%{_qtdir}/metatypes/qt6ffmpegmediapluginimplprivate_relwithdebinfo_metatypes.json \
+%{_qtdir}/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
+%{_qtdir}/modules/FFmpegMediaPluginImplPrivate.json \
 %{_qtdir}/sbom/*
 
 %define extra_files_Multimedia \
@@ -141,13 +148,13 @@ Requires:	%{name}-gstreamer = %{EVRD}
 Development files for the Qt Multimedia GStreamer plugin
 
 %files gstreamer-devel
-%{_qtdir}/include/QtQGstreamerMediaPluginImpl
-%{_qtdir}/lib/cmake/Qt6QGstreamerMediaPluginImplPrivate
-%{_qtdir}/lib/libQt6QGstreamerMediaPluginImpl.a
-%{_qtdir}/lib/libQt6QGstreamerMediaPluginImpl.prl
-%{_qtdir}/metatypes/qt6qgstreamermediapluginimplprivate_relwithdebinfo_metatypes.json
-%{_qtdir}/mkspecs/modules/qt_lib_qgstreamermediapluginimpl_private.pri
-%{_qtdir}/modules/QGstreamerMediaPluginImplPrivate.json
+%{_qtdir}/include/QtGstreamerMediaPluginImpl
+%{_qtdir}/mkspecs/modules/qt_lib_gstreamermediapluginimpl_private.pri
+%{_qtdir}/modules/GstreamerMediaPluginImplPrivate.json
+%{_qtdir}/lib/cmake/Qt6GstreamerMediaPluginImplPrivate
+%{_qtdir}/lib/libQt6GstreamerMediaPluginImpl.a
+%{_qtdir}/lib/libQt6GstreamerMediaPluginImpl.prl
+%{_qtdir}/metatypes/qt6gstreamermediapluginimplprivate_relwithdebinfo_metatypes.json
 
 %prep
 %autosetup -p1 -n qtmultimedia%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
