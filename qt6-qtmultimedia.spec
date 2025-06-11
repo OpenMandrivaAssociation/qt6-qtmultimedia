@@ -1,7 +1,7 @@
 #define beta rc
 
 Name:		qt6-qtmultimedia
-Version:	6.9.0
+Version:	6.9.1
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -173,3 +173,6 @@ export LD_LIBRARY_PATH="$(pwd)/build/lib:${LD_LIBRARY_PATH}"
 %install
 %ninja_install -C build
 %qt6_postinstall
+
+# Why does iOS crap get installed??? We neither need nor want it...
+rm -rf %{buildroot}%{_qtdir}/mkspecs/features/ios
