@@ -1,7 +1,7 @@
-#define beta rc
+%define beta beta2
 
 Name:		qt6-qtmultimedia
-Version:	6.9.1
+Version:	6.10.0
 Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
@@ -75,7 +75,6 @@ License:	LGPLv3/GPLv3/GPLv2
 Qt %{qtmajor} multimedia module
 
 %define extra_devel_files_Multimedia \
-%{_qtdir}/lib/cmake/Qt6/FindAVFoundation.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindGObject.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindGStreamer.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindMMRenderer.cmake \
@@ -92,9 +91,11 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6FFmpegMediaPluginImplPrivate \
 %{_qtdir}/lib/libQt6FFmpegMediaPluginImpl.a \
 %{_qtdir}/lib/libQt6FFmpegMediaPluginImpl.prl \
-%{_qtdir}/metatypes/qt6ffmpegmediapluginimplprivate_relwithdebinfo_metatypes.json \
 %{_qtdir}/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
 %{_qtdir}/modules/FFmpegMediaPluginImplPrivate.json \
+%{_qtdir}/lib/cmake/Qt6BundledTLSF/Qt6BundledTLSFDependencies.cmake \
+%{_qtdir}/metatypes/qt6ffmpegmediapluginimplprivate_metatypes.json \
+%{_qtdir}/metatypes/qt6gstreamermediapluginimplprivate_metatypes.json \
 %{_qtdir}/sbom/*
 
 %define extra_files_Multimedia \
@@ -154,7 +155,6 @@ Development files for the Qt Multimedia GStreamer plugin
 %{_qtdir}/lib/cmake/Qt6GstreamerMediaPluginImplPrivate
 %{_qtdir}/lib/libQt6GstreamerMediaPluginImpl.a
 %{_qtdir}/lib/libQt6GstreamerMediaPluginImpl.prl
-%{_qtdir}/metatypes/qt6gstreamermediapluginimplprivate_relwithdebinfo_metatypes.json
 
 %prep
 %autosetup -p1 -n qtmultimedia%{!?snapshot:-everywhere-src-%{version}%{?beta:-%{beta}}}
