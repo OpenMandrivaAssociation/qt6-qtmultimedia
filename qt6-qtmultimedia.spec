@@ -1,4 +1,4 @@
-%define beta beta2
+%define beta beta3
 
 Name:		qt6-qtmultimedia
 Version:	6.10.0
@@ -79,7 +79,6 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/cmake/Qt6/FindGStreamer.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindMMRenderer.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindPipeWire.cmake \
-%{_qtdir}/lib/cmake/Qt6/FindWMF.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindWrapPulseAudio.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindFFmpeg.cmake \
 %{_qtdir}/lib/cmake/Qt6/FindMMRendererCore.cmake \
