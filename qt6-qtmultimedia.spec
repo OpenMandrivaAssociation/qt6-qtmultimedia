@@ -2,7 +2,7 @@
 
 Name:		qt6-qtmultimedia
 Version:	6.10.0
-Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}2
+Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}3
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
 Source:		qtmultimedia-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
@@ -55,15 +55,23 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(vulkan)
 BuildRequires:	pkgconfig(libva)
+BuildRequires:	pkgconfig(libpipewire-0.3)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-allocators-1.0)
 BuildRequires:	pkgconfig(gstreamer-base-1.0)
 BuildRequires:	pkgconfig(gstreamer-audio-1.0)
 BuildRequires:	pkgconfig(gstreamer-video-1.0)
 BuildRequires:	pkgconfig(gstreamer-photography-1.0)
 BuildRequires:	pkgconfig(gstreamer-pbutils-1.0)
+BuildRequires:	pkgconfig(gstreamer-app-1.0)
+BuildRequires:	pkgconfig(gstreamer-play-1.0)
+BuildRequires:	pkgconfig(gstreamer-gl-1.0)
+BuildRequires:	pkgconfig(gstreamer-gl-wayland-1.0)
+BuildRequires:	pkgconfig(gstreamer-gl-egl-1.0)
+BuildRequires:	pkgconfig(gstreamer-gl-x11-1.0)
 BuildRequires:	cmake(LLVM)
 BuildRequires:	cmake(Clang)
 # Not really required, but referenced by LLVMExports.cmake
@@ -111,6 +119,13 @@ Qt %{qtmajor} multimedia module
 
 %global extra_devel_files_MultimediaTestLib \
 %{_qtdir}/mkspecs/modules/qt_lib_multimediatestlibprivate_private.pri
+
+# Keep in sync with the list in Qt6MultimediaDependencies.cmake
+%global extra_devel_reqprov_Multimedia \
+Requires:	cmake(Qt6Concurrent) \
+Requires:	cmake(Qt6Core) \
+Requires:	cmake(Qt6Gui) \
+Requires:	cmake(Qt6Network)
 
 %qt6libs Multimedia MultimediaWidgets SpatialAudio MultimediaQuick Quick3DSpatialAudio
 %qt6staticlibs MultimediaTestLib
