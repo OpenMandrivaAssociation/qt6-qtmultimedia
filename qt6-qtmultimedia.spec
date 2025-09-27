@@ -1,13 +1,13 @@
-%define beta beta3
+%define beta rc
 
 Name:		qt6-qtmultimedia
 Version:	6.10.0
-Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}3
+Release:	%{?beta:0.%{beta}.}%{?snapshot:0.%{snapshot}.}1
 %if 0%{?snapshot:1}
 # "git archive"-d from "dev" branch of git://code.qt.io/qt/qtbase.git
 Source:		qtmultimedia-%{?snapshot:%{snapshot}}%{!?snapshot:%{version}}.tar.zst
 %else
-Source:		http://download.qt-project.org/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtmultimedia-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
+Source:		https://download.qt.io/%{?beta:development}%{!?beta:official}_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}%{?beta:-%{beta}}/submodules/qtmultimedia-everywhere-src-%{version}%{?beta:-%{beta}}.tar.xz
 %endif
 Patch0:		qtmultimedia-fix-examples.patch
 Group:		System/Libraries
@@ -100,7 +100,6 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/lib/libQt6FFmpegMediaPluginImpl.prl \
 %{_qtdir}/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
 %{_qtdir}/modules/FFmpegMediaPluginImplPrivate.json \
-%{_qtdir}/lib/cmake/Qt6BundledTLSF/Qt6BundledTLSFDependencies.cmake \
 %{_qtdir}/metatypes/qt6ffmpegmediapluginimplprivate_metatypes.json \
 %{_qtdir}/metatypes/qt6gstreamermediapluginimplprivate_metatypes.json \
 %{_qtdir}/sbom/*
