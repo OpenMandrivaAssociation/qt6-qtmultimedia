@@ -105,6 +105,15 @@ Qt %{qtmajor} multimedia module
 %{_qtdir}/metatypes/qt6gstreamermediapluginimplprivate_metatypes.json \
 %{_qtdir}/sbom/*
 
+%global extra_devel_reqprov_MultimediaQuick \
+Provides: cmake(Qt6MultimediaQuickPrivatePrivate) = %{EVRD}
+
+%global extra_devel_reqprov_MultimediaTestLib \
+Provides: cmake(Qt6MultimediaTestLibPrivatePrivate) = %{EVRD}
+
+%define extra_devel_reqprov_Quick3DSpatialAudio \
+Provides: cmake(Qt6Quick3DSpatialAudioPrivatePrivate) = %{EVRD}
+
 %define extra_files_Multimedia \
 %dir %{_qtdir}/plugins/multimedia \
 %{_qtdir}/plugins/multimedia/libffmpegmediaplugin.so \
@@ -125,7 +134,8 @@ Qt %{qtmajor} multimedia module
 Requires:	cmake(Qt6Concurrent) \
 Requires:	cmake(Qt6Core) \
 Requires:	cmake(Qt6Gui) \
-Requires:	cmake(Qt6Network)
+Requires:	cmake(Qt6Network) \
+Provides:	cmake(Qt6FFmpegMediaPluginImplPrivatePrivate) = %{EVRD}
 
 %qt6libs Multimedia MultimediaWidgets SpatialAudio MultimediaQuick Quick3DSpatialAudio
 %qt6staticlibs MultimediaTestLib
@@ -158,6 +168,7 @@ Gstreamer based plugin for Qt multimedia playback
 Summary:	Development files for the Qt Multimedia GStreamer plugin
 Group:		Development/KDE and Qt
 Requires:	%{name}-gstreamer = %{EVRD}
+Provides:	cmake(Qt6GstreamerMediaPluginImplPrivatePrivate) = %{EVRD}
 
 %description gstreamer-devel
 Development files for the Qt Multimedia GStreamer plugin
